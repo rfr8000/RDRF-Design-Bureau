@@ -1,0 +1,26 @@
+.pooptext{font-size: 20px; color: blueviolet; font-style: italic; letter-spacing: 2px;}
+.pooptext2{
+  font-family: "Instrument Serif", serif;
+  font-weight: 700;
+  font-style: italic;
+  letter-spacing: 5px;
+}
+@font-face{
+    font-family: Averia;
+    src: url(Averia_Serif_Libre/AveriaSerifLibre-Italic.ttf);
+}
+.pooptext3{
+  font-family: Averia;
+  text-align: justify;
+}
+.pooptext4{
+  font-family: 'Times New Roman', Times, serif;
+  font-weight: bolder;
+  letter-spacing: 1px;
+}
+.center {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 50%;
+}
