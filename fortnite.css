@@ -1,0 +1,26 @@
+@font-face {
+  font-family: AlteHaasGrotesk;
+  src: url(AlteHaasGroteskBold.ttf);
+}
+
+body {
+  margin: 0;
+  font-family: AlteHaasGrotesk, Arial, Helvetica, sans-serif;
+  overflow: hidden;
+
+}
+
+.landing {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+
+  background-image: url("landing.svg");
+  background-size: cover;
+  background-position: left top; /* << prioritizes left side */
+  background-repeat: no-repeat;
+
+   z-index: -1;
+}

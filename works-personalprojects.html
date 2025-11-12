@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="works-personalprojects.css">
+  <script src="navbar.js" defer></script>
+</head>
+
+<body>
+
+<navbar-component></navbar-component>
+
+ <!-- Background scrolling image -->
+  <div class="scroll-container">
+    <img src="works-personalprojects@2x.png" class="background-image" alt="">
+    
+    <!-- Hotspots (these match the red boxes) -->
+    <div class="hotspot box-1" data-img="glyphspost.png"></div>
+    <div class="hotspot box-2" data-img="glows.png"></div>
+
+    <!-- Add more if needed -->
+
+    <div class="hotspot" data-gallery="proj-A"
+       style="top: 9%; left: 10%; width: 85%; height: 3%;"></div>
+
+    <div class="hotspot" data-gallery="proj-B"
+       style="top: 13.5%; left: 8%; width: 80%; height: 3%;"></div>
+
+    <div class="hotspot" data-gallery="proj-C"
+       style="top: 18.1%; left: 9%; width: 85%; height: 3.8%;"></div>
+
+    <div class="hotspot" data-gallery="proj-D"
+       style="top: 24%; left: 10%; width: 85%; height: 5.4%;"></div>
+
+    <div class="hotspot" data-gallery="proj-E"
+       style="top: 30.9%; left: 10%; width: 85%; height: 4.2%;"></div>
+
+    <div class="hotspot" data-gallery="proj-F"
+       style="top: 36%; left: 17%; width: 85%; height: 4.2%;"></div>
+
+    <div class="hotspot" data-gallery="proj-G"
+       style="top: 40.6%; left: 10%; width: 85%; height: 4.2%;"></div>
+
+    <div class="hotspot" data-gallery="proj-H"
+       style="top: 45.3%; left: 5%; width: 85%; height: 4.2%;"></div>
+
+    <div class="hotspot" data-gallery="proj-I"
+       style="top: 50.2%; left: 4.9%; width: 85%; height: 4.2%;"></div>
+
+    <div class="hotspot" data-gallery="proj-J"
+       style="top: 55.2%; left: 4.9%; width: 85%; height: 4.2%;"></div>
+
+    <div class="hotspot" data-gallery="proj-K"
+       style="top: 67%; left: 9%; width: 85%; height: 5.3%;"></div>
+
+    <div class="hotspot" data-gallery="proj-L"
+       style="top: 85.7%; left: 8.1%; width: 80%; height: 5%;"></div>
+    
+    <div class="hotspot" data-gallery="proj-M"
+       style="top: 93.7%; left: 4%; width: 95%; height: 5%;"></div>
+
+  </div>
+
+
+ <div class="zoom-modal" id="zoomModal">
+  <button class="nav prev" id="prevBtn">←</button>
+  <div class="zoom-content">
+    <img id="zoomImage" src="">
+  </div>
+  <button class="nav next" id="nextBtn">→</button>
+</div>
+
+<img src="Foot.svg" class="footer">
+
+  <script>
+
+  const galleries = {
+  "proj-A": [
+     "DSC09903.png",
+     "DSC09843.png",
+   
+  ],
+  "proj-B": [
+    "DSC04387.jpg",
+    "DSC04400.jpg",
+
+  ],
+  "proj-C": [
+    "DSC04328.jpg",
+    "rgfsgdrg.jpg",
+  ],
+
+    "proj-D": [
+        "DSC04981.jpg",
+        "DSC04888.jpg",
+    ],
+
+    "proj-E": [
+        "DSC05222.jpg",
+        "DSC05242.jpg",
+    ],
+
+    "proj-F": [
+        "DSC06644-1.jpg",
+        "DSC06655-1.jpg",
+    ],
+
+    "proj-G": [
+        "DSC00560-1.jpg",
+        "DSC00399-1.jpg",
+    ],
+
+    "proj-H": [
+        "DSC01144-1.jpg",
+        "DSC01131-1.jpg",
+    ],
+
+    "proj-I": [
+        "DSC01497-1.jpg",
+        "DSC01637-1.jpg",
+    ],
+
+    "proj-J": [
+        "DSC02151-3.jpg",
+        "DSC01940-1.jpg",
+    ],
+
+    "proj-K": [
+        "UIO.png",
+        "unmuted.png",
+    ],
+
+    "proj-L": [
+        "combo.png",
+        "mayhem.png",
+    ],
+
+    "proj-M": [
+        "HSL@2x.png",
+        "Mount Zenith@2x.png",
+        "SHI.png",
+        "COMS@3x.png",
+        "r@2x.png",
+        "SERPENT@2x.png",
+        "SPACECOM gray@3x.png",
+        "3SSA Meatball@3x.png",
+        "CSF@3x.png",
+        "NSSA@3x.png",
+        "Melos@3x.png",
+        "3SSA Star Blue@3x.png",
+        "Rooi 2@3x.png",
+
+    ],
+};
+
+const hotspots = [...document.querySelectorAll('.hotspot')];
+
+let currentGallery = null;   // null = single image mode
+let currentIndex = 0;
+
+// open single image
+function openSingle(imgSrc) {
+  currentGallery = null;
+  document.getElementById("zoomImage").src = imgSrc;
+  document.getElementById("zoomModal").classList.add("open");
+}
+
+// open gallery
+function openGallery(name) {
+  currentGallery = galleries[name];
+  currentIndex = 0;
+  updateModal();
+  document.getElementById("zoomModal").classList.add("open");
+}
+
+function updateModal() {
+  document.getElementById("zoomImage").src = currentGallery[currentIndex];
+}
+
+// hotspot click logic
+hotspots.forEach(h => {
+  h.addEventListener("click", () => {
+    if (h.dataset.gallery) {
+      openGallery(h.dataset.gallery);
+    } else if (h.dataset.img) {
+      openSingle(h.dataset.img);
+    }
+  });
+});
+
+// close modal by clicking background
+document.getElementById("zoomModal").addEventListener("click", (e) => {
+  if (e.target.id === "zoomModal") {
+    document.getElementById("zoomModal").classList.remove("open");
+  }
+});
+
+// nav buttons
+document.getElementById("prevBtn").onclick = (e) => {
+  e.stopPropagation();
+  if (!currentGallery) return; // do nothing in single mode
+  currentIndex = (currentIndex - 1 + currentGallery.length) % currentGallery.length;
+  updateModal();
+};
+
+document.getElementById("nextBtn").onclick = (e) => {
+  e.stopPropagation();
+  if (!currentGallery) return; // do nothing in single mode
+  currentIndex = (currentIndex + 1) % currentGallery.length;
+  updateModal();
+};
+
+</script>
+
+</body>
+
+</html>

@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="works-misc.css">
+  <script src="navbar.js" defer></script>
+</head>
+
+<body>
+
+<navbar-component></navbar-component>
+
+ <!-- Background scrolling image -->
+  <div class="scroll-container">
+    <img src="works-misc.png" class="background-image" alt="">
+    
+    <!-- Hotspots (these match the red boxes) -->
+    <div class="hotspot box-1" data-img="razor.png"></div>
+    <div class="hotspot box-2" data-img="Untitled-2.png"></div>
+    <div class="hotspot box-3" data-img="surat izin2.png"></div>
+    <div class="hotspot box-4" data-img="letterset test.jpg"></div>
+    <div class="hotspot box-5" data-img="necrocarcinisation.png"></div>
+
+    <!-- Add more if needed -->
+
+  </div>
+
+
+ <div class="zoom-modal" id="zoomModal">
+  <button class="nav prev" id="prevBtn">←</button>
+  <div class="zoom-content">
+    <img id="zoomImage" src="">
+  </div>
+  <button class="nav next" id="nextBtn">→</button>
+</div>
+
+<img src="Foot.svg" class="footer">
+
+<script>
+
+const hotspots = [...document.querySelectorAll('.hotspot')];
+
+let currentGallery = null;   // null = single image mode
+let currentIndex = 0;
+
+// open single image
+function openSingle(imgSrc) {
+  currentGallery = null;
+  document.getElementById("zoomImage").src = imgSrc;
+  document.getElementById("zoomModal").classList.add("open");
+}
+
+// open gallery
+function openGallery(name) {
+  currentGallery = galleries[name];
+  currentIndex = 0;
+  updateModal();
+  document.getElementById("zoomModal").classList.add("open");
+}
+
+function updateModal() {
+  document.getElementById("zoomImage").src = currentGallery[currentIndex];
+}
+
+// hotspot click logic
+hotspots.forEach(h => {
+  h.addEventListener("click", () => {
+    if (h.dataset.gallery) {
+      openGallery(h.dataset.gallery);
+    } else if (h.dataset.img) {
+      openSingle(h.dataset.img);
+    }
+  });
+});
+
+// close modal by clicking background
+document.getElementById("zoomModal").addEventListener("click", (e) => {
+  if (e.target.id === "zoomModal") {
+    document.getElementById("zoomModal").classList.remove("open");
+  }
+});
+
+// nav buttons
+document.getElementById("prevBtn").onclick = (e) => {
+  e.stopPropagation();
+  if (!currentGallery) return; // do nothing in single mode
+  currentIndex = (currentIndex - 1 + currentGallery.length) % currentGallery.length;
+  updateModal();
+};
+
+document.getElementById("nextBtn").onclick = (e) => {
+  e.stopPropagation();
+  if (!currentGallery) return; // do nothing in single mode
+  currentIndex = (currentIndex + 1) % currentGallery.length;
+  updateModal();
+};
+
+</script>
+
+</body>
+
+</html>

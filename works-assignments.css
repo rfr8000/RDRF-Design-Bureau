@@ -1,0 +1,132 @@
+@font-face {
+  font-family: AlteHaasGrotesk;
+  src: url(AlteHaasGroteskBold.ttf);
+}
+
+body {
+  margin: 0;
+  overflow-x: hidden; /* prevent sideways shifting */
+  background: #ffffff; /* fallback */
+}
+
+/* Page scroll container */
+.scroll-container {
+  position: relative;
+  width: 100vw;
+  overflow-x: hidden;
+  overflow-y: scroll;
+}
+
+/* The big background PNG */
+.background-image {
+  display: block;
+  width: 100vw;          /* scales to viewport width */
+  height: auto;          /* preserves aspect ratio */
+  image-rendering: auto; /* keeps clarity */
+}
+
+.footer {
+display: block;
+transform: translateY(-21%);        
+height: auto;        
+}
+
+/* Hotspots (click zones) */
+.hotspot {
+  position: absolute;
+  cursor: pointer;
+  background: rgba(255, 0, 0, 0); /* invisible click area */
+}
+
+/* BOX 1 */
+.box-1 {
+  top: 18.78%;
+  left: 0%;
+  width: 100%;
+  height: 5%;
+}
+
+/* BOX 2 */
+.box-2 {
+  top: 64.68%;
+  left: 0%;
+  width: 100%;
+  height: 7%;
+}
+
+/* BOX 3 */
+.box-3 {
+  top: 72.5%;
+  left: 4.08%;
+  width: 45.19%;
+  height: 4%;
+}
+
+/* BOX 4 */
+.box-4 {
+  top: 74.61%;
+  left: 52.79%;
+  width: 45.19%;
+  height: 4%;
+}
+
+/* BOX 5 */
+.box-5 {
+  top: 80.4%;
+  left: 4.79%;
+  width: 45.19%;
+  height: 4%;
+}
+
+/* BOX 6 */
+.box-6 {
+  top: 82.6%;
+  left: 52.79%;
+  width: 45.19%;
+  height: 4%;
+}
+
+
+/* CLICK TO ZOOM MODAL */
+.zoom-modal {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.75);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  opacity: 0;
+  pointer-events: none;
+  transition: 0.3s ease;
+  z-index: 9999;
+}
+
+.zoom-modal.open {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.zoom-content img {
+  max-width: 90vw;
+  max-height: 90vh;
+  border: 3px solid white;
+  cursor: zoom-out;
+}
+
+.nav {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background: none;
+  border: none;
+  color: white;
+  font-size: 4vh;
+  cursor: pointer;
+  padding: 20px;
+  user-select: none;
+}
+
+.prev { left: 2vw; }
+.next { right: 2vw; }
+
+.nav:hover { opacity: 0.7; }
